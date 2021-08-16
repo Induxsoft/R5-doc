@@ -1,2 +1,2 @@
-# MaxiComercio-Doc
-Documentación del producto MaxiComercio
+# R5-doc
+Documentación de los productos pertenecientes a la línea R5
