@@ -1,0 +1,161 @@
+<div>			
+			<h1>CÓMO ELIMINAR UN TICKET ABIERTO EN EL CORTE DE CAJA EN MAXICOMERCIO/DÉMINUS</h1>
+			<p />
+			<h3>
+				<b>En ésta guía se explica cómo configurar el arqueo y corte de caja para no visualizar los tickets abiertos</b>
+			</h3>
+			<p/>
+			<p >
+				<img src="https://induxsoft.net/imageview.php?id=dbc737040bfb469fb1251730facdaf9a" width="400"></p>
+			<p/>
+			<br>
+				<h3>Como primer procedimiento localiza la ruta de su repositorio con los siguientes pasos:</h3>
+				<hr>
+					<ol>
+						<p/>
+						<li>Abrir un
+							<b>
+								<em>Explorador de archivos</em>
+							</b>
+							e ingresar la dirección de
+							<b>
+								<em>%appdata%</em>
+							</b>
+							da Enter
+						</li>
+						<p/>
+						<p >
+							<img src="https://induxsoft.net/imageview.php?id=47a7cfe4ba4a4e2daa808802c15c26cb" width="450"> </p>
+						<p />
+						<li>Se abre la ruta 1, en seguida da clic en la carpeta
+							<b>
+								<em>AppData</em>
+							</b>
+						</li>
+						<p/>
+						<p >
+							<img src="https://induxsoft.net/imageview.php?id=651a8ce48f4b4df188b0c3e2a8b84cb2" width="450"> </p>
+						<p />
+						<li>Al darle clic a AppData os aparecen las siguientes carpetas, le damos clic a la carpeta
+							<b>
+								<em>Local</em>
+							</b>
+						</li>
+						<p/>
+						<p >
+							<img src="https://induxsoft.net/imageview.php?id=da15c56185904db89890f46aa70ee13c" width="450"> </p>
+						<p />
+						<li>Dentro de la carpeta
+							<b>Local,</b>
+							identifica la carpeta
+							<b>
+								<em>GExecom</em>
+							</b>
+						</li>
+						<p/>
+						<p >
+							<img src="https://induxsoft.net/imageview.php?id=e266c102de2047c6994e95eeff1e3c32" width="450"> </p>
+						<p />
+						<li>Dentro de la carpeta
+							<b>
+								<em>GExecom</em>
+							</b>
+							, localiza el archivo con el nombre MaxiComercio y lo abre, ubica la ruta de su
+							<b>
+								<em>Repositorio</em>
+							</b>
+							y lo copia.
+						</li>
+						<p/>
+						<p >
+							<img src="https://induxsoft.net/imageview.php?id=8c5ea0704a254922abaab04c9186f9f4" width="450"> </p>
+						<p />
+						<li>Ingrese la dirección del repositorio en el explorador de Archivos, da Enter para dirigirse al repositorio.</li>
+						<p/>
+						<p >
+							<img src="https://induxsoft.net/imageview.php?id=10e970c863a84b78872370f819dfff25" width="450"> </p>
+					</ol>
+					<br>
+						<h3>Modificar archivo prn_arqueo</h3>
+						<hr>
+							<ol>
+								<p />
+								<li>Una vez ubicado el Repositorio buscamos el archivo
+									<b>
+										<em>prn_arqueo.</em>
+									</b>
+								</li>
+								<p/>
+								<p >
+									<img src="https://induxsoft.net/imageview.php?id=69e49f92aff74b2ea3732267153e6724" width="450"> </p>
+								<p />
+								<li>Haga clic derecho sobre el archivo y selecciona
+									<b>
+										<em>Abrir con.</em>
+									</b>
+								</li>
+								<p/>
+								<p >
+									<img src="https://induxsoft.net/imageview.php?id=acdcd7443b5147658261b5048fc26356" width="450"> </p>
+								<p />
+								<li>Seleccione
+									<b>
+										<em>Bloc de notas.</em>
+									</b>
+									de las opciones listadas.
+								</li>
+								<p/>
+								<p >
+									<img src="https://induxsoft.net/imageview.php?id=de91811dc3c9474d8831fce0e2a8ff0d" width="450"> </p>
+								<p />
+								<li>Al abrir el archivo da clic en
+									<b>
+										<em>Editar</em>
+									</b>
+									y selecciona
+									<b>Buscar</b>
+									.
+								</li>
+								<p/>
+								<p >
+									<img src=" https://induxsoft.net/imageview.php?id=6cf4f601af0a4794a8520b786d3f095c" width="450"> </p>
+								<p />
+								<li>En el cuadro de busqueda coloca:
+									<b>OR Venta.StatusAdministrativo</b>
+									y haga clic en
+									<b>
+										<em>Buscar siguiente.</em>
+									</b>
+								</li>
+								<p/>
+								<p >
+									<img src="https://induxsoft.net/imageview.php?id=409911999531426da7de30d71b8fc9d9" width="500"> </p>
+								<p />
+								<li>A continuación
+									<b>
+										<em>borra</em>
+									</b>
+									las lineas que se muestran en la imagen siguiente:
+								</li>
+								<p/>
+								<p >
+									<img src="https://induxsoft.net/imageview.php?id=a18b6f63b0904a69a2d4ad62df730f35" width="500"> </p>
+								<p >Recuerde solo borrar
+									<b>OR Venta.StatusAdministrativo &lt; 3</b>
+									al termino debe quedar de la siguiente manera:
+								</p>
+								<p >
+									<img src="https://induxsoft.net/imageview.php?id=dbd9a8d190d346439633b9244a395f3e" width="450"> </p>
+								<p />
+								<li>A continuación haga clic en
+									<b>
+										<em>Guardar</em>
+									</b>
+									para finalizar.
+								</li>
+								<p/>
+								<p >
+									<img src="https://induxsoft.net/imageview.php?id=963d806e6cb9466e8fb9e7cf0181d8cc" width="450"> </p>
+							</ol>
+							<br>
+				</div>
