@@ -20,5 +20,6 @@ function evCustomTimer()
 ```Javascript
 // Se ejecuta cada segundo (el valor de interval está expresado en milisegundos)
 MainForm.customTimer.Interval=1000; 
+MainForm.customTimer.Enabled=true;
 ```
 Puede incluir el código en los archivos pos.js, pos_usercmd.js, pos_events.js o en alguno que configure para que se cargue en el evento evAlIniciar() (en pos.js)
