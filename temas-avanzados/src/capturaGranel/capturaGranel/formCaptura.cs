@@ -64,7 +64,7 @@ namespace capturaGranel
             }
 
             string output = "***" + Producto.producto.codigo + "|" +
-                Producto.convertirPrecio(Producto.unidad, Producto.total, Producto.producto.unidad).ToString() + "|" +
+                Producto.total.ToString() + "|" +
                 Producto.convertirUnidad(Producto.unidad, Producto.cantidad, Producto.producto.unidad).ToString();
 
             //MessageBox.Show(output);
