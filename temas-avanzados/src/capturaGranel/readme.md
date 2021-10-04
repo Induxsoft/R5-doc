@@ -10,12 +10,12 @@ El programa puede leer automáticamente los datos de una báscula conectada al p
 capturaGranel.exe "MA0001" "Piña" "1" "45.5" "Kg" "Reja:25,Costal:35.5, Tara:150,Tonelada:1000" "Kg"
 ```
 Donde los argumentos por orden son:
- 1- Código del producto
- 2- Descripción del producto
- 3- Cantidad
- 4- Unidad estándar
- 5- Unidades alternas y sus factores de conversión respecto a la unidad estándar (opcional)
- 6- Unidad que al estar seleccionada activa la entrada automática de la báscula (opcional)
+ 1. Código del producto
+ 2. Descripción del producto
+ 3. Cantidad
+ 4. Unidad estándar
+ 5. Unidades alternas y sus factores de conversión respecto a la unidad estándar (opcional)
+ 6. Unidad que al estar seleccionada activa la entrada automática de la báscula (opcional)
  
 #### Nota sobre la especificación de unidades alternas
  
