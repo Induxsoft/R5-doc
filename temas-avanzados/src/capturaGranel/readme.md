@@ -44,6 +44,6 @@ Si la operación se confirma, la salida es: ```***codigo|total|cantidad```
 
 Suponga que la unidad estándar es Kg y tiene una unidad alterna Caja con un factor de 25, es decir 25Kg=1Caja con un precio por caja de $100. 
 
-Si confirma la venta de 2 Caja, la cantidad devuelta será 50 y el importe $ 200
+Si confirma la venta de 2 Caja, la cantidad devuelta será 50 y el total $ 200
 
 
