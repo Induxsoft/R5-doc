@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ---------------------------------------------------------------------------------
+//                Copyright 2021 Induxsoft Data Services S de RL de CV
+//                
+//        Induxsoft is a trademark of Induxsoft Data Services S de RL de CV               
+//                             https://induxsoft.net/
+//                             
+//         Licensed under the Apache License, Version 2.0 (the "License")
+//         YOU MAY NOT USE THIS FILE EXCEPT IN COMPLIANCE WITH THE LICENSE.
+//                       You may obtain a copy of the License at 
+//                    http://www.apache.org/licenses/LICENSE-2.0
+//
+// ---------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
