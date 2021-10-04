@@ -46,4 +46,122 @@ Suponga que la unidad estándar es Kg y tiene una unidad alterna Caja con un fac
 
 Si confirma la venta de 2 Caja, la cantidad devuelta será 50 y el total $ 200
 
+### Implementación
 
+1. Compile el proyecto capturaGranel.sln para obtener capturaGranel.exe
+2. Copie el archivo capturaGranel.exe a una ubicación en el equipo que ejecuta el POS
+3. Cree un archivo .bat que ejecute a capturaGranel.exe como se muestra más adelante.
+4. Modifique el script pos_usercmds.js como se muestra más adelante para habilitar un comando de usuario.
+
+#### capturagranel.bat
+Para capturar la salida de consola de aplicaciones .Net de Windows Forms se requiere un archivo de proceso por lotes en el POS de MaxiComercio R5.
+
+
+``` bacth
+@capturagranel.exe %1 %2 %3 %4 %5 %6
+```
+
+#### pos_usercmds.js
+Aquí se habilita el comando +f para desplegar la ventana de captura (capturagranel.exe)
+``` javascript
+function main()
+{
+
+	//Este código debe ir en el script pos_usrcmd.js
+	//MainForm.AddUserCommand("Comando", "Accion", "Descripcion", "function", Negritas t/f,Color fuente);
+	//Comandos definibles por el usuario: +12 ... +98
+	//MainForm.AddUserCommand("+12", "Accion", "Descripcion", "mifuncion", false,0xC000);
+	
+	MainForm.AddUserCommand("+12", "Catálogo de documentos de flujo", "Muestra el catálogo de documentos de flujo", "pos_requisiciones.dlgbrowser",false,0xC000);
+	MainForm.AddUserCommand("+13", "Configuración de envío de correo", "Permite al usuario configurar envío del corte de caja por correo", "config_email_arqueo.configLoad",false,0xC000);
+	
+	// ************ GRANEL *************
+	MainForm.AddUserCommand("+f", "Captura de productos a granel", "Despliega la ventana de captura de productos a granel", "pos_usercmds.cmd_granel",false,0xC000);
+	// *********************************
+
+	
+}
+
+function cmd_granel()
+{
+	pos_usercmds.granel("");
+}
+
+function granel(cod)
+{
+	
+	MainForm.SetProducto(cod);
+	var codigo=MainForm.dxProducto.Value;
+	
+	if (!codigo)
+		return;
+	
+	// Aquí puede validarse si el código de producto aplica para usar este método de captura
+	// Tú código aquí
+	////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	var idxp=MainForm.BuscarProductoEnPantalla_PorCodigo(codigo);
+	var cantidad_actual=0;
+	var importe_actual=0;
+	var descripcion="";
+	var precio=0;
+	var unidad="";
+	
+	if (idxp>0)
+	{
+		MainForm.SeleccionaProductoEnPantalla(idxp);
+		cantidad_actual=eBasic.RoundVal(MainForm.lvwProductos.ListItems(idxp).SubItems(2),4);
+		importe_actual=eBasic.RoundVal(MainForm.lvwProductos.ListItems(idxp).SubItems(5),4);
+		descripcion=MainForm.lvwProductos.ListItems(idxp).SubItems(1);
+		precio=eBasic.RoundVal(MainForm.lvwProductos.ListItems(idxp).SubItems(4),2);
+		unidad=MainForm.lvwProductos.ListItems(idxp).SubItems(3);
+	}
+	else
+	{
+		precio=MainForm.PrecioProdActualConImpuestos;
+		descripcion=MainForm.ProductoActual.Descripcion;
+		unidad=MainForm.ProductoActual.Unidad;
+	}
+	
+	
+	Application.MainForm.ClearConsole();
+	var command = "capturaGranel.bat "+
+		"\""+codigo + "\" "+
+		"\""+descripcion+"\" "+
+		"\"1\" "+
+		"\""+precio+"\" "+
+		"\""+unidad+"\"";		
+		
+	Application.MainForm.ExecInConsole(command);
+	
+	var response = eBasic.ClearStrBorders(Application.MainForm.txtConsole.Text);
+
+	if (response.indexOf("*CANCEL*")<0)
+	{
+		try
+		{
+			var ultMayorQue = response.lastIndexOf("*");
+			response = response.substr(ultMayorQue+1, response.length-ultMayorQue);		
+			var datos=response.split('|');
+			
+			importe_actual=importe_actual+eBasic.RoundVal(datos[1],4);
+			cantidad_actual=cantidad_actual+eBasic.RoundVal(datos[2],4);
+			
+			if (idxp>0)
+				MainForm.Execute("--");
+			
+			var c1=codigo+"*"+cantidad_actual; 	// Agregar el producto con su cantidad
+			var c2="/"+importe_actual;			// Establecer el importe total por todas las unidades
+			
+			MainForm.Execute(c1);
+			MainForm.Execute(c2);
+		}
+		catch(e)
+		{
+			eBasic.eMsgbox("Error");
+		}
+	}	
+	
+}
+```
