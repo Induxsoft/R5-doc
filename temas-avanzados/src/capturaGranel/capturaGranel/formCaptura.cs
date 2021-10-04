@@ -30,6 +30,21 @@ namespace capturaGranel
 
             cCantidad.Text = p.cantidad.ToString();
             cPrecio.Text = p.precio.ToString();
+
+            if (!string.IsNullOrWhiteSpace(p.unidadbascula))
+            {
+                try
+                {
+                    Bascula.Inicializar();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+
+                tmBascula.Enabled = true;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -239,150 +254,80 @@ namespace capturaGranel
             Freeze = false;
         }
 
-        private void cCantidad_Enter(object sender, EventArgs e)
+        private void cNumbers_Enter(object sender, EventArgs e)
         {
             ((TextBox)sender).SelectAll();
+            
+            HideIndicador();
+
+            switch(((TextBox)sender).Name)
+            {
+                case "cCantidad":
+                    sel2.Visible = true;
+                    break;
+                case "cPrecio":
+                    sel3.Visible = true;
+                    break;
+                case "cTotal":
+                    sel4.Visible = true;
+                    break;
+            }
+        }
+
+        private void formCaptura_Shown(object sender, EventArgs e)
+        {
+            this.Activate();
+            cCantidad.Focus();
+        }
+
+        private void cUnidad_Enter(object sender, EventArgs e)
+        {
+            HideIndicador();
+            sel1.Visible = true;
+        }
+
+        private void btnOk_Enter(object sender, EventArgs e)
+        {
+            HideIndicador();
+            sel5.Visible = true;
+        }
+
+        private void btnOk_Leave(object sender, EventArgs e)
+        {
+            HideIndicador();
+        }
+
+        private void Everything_Leave(object sender, EventArgs e)
+        {
+            HideIndicador();
+        }
+
+        void HideIndicador()
+        {
+            sel1.Visible = false;
+            sel2.Visible = false;
+            sel3.Visible = false;
+            sel4.Visible = false;
+            sel5.Visible = false;
+        }
+
+        private string ultimoPeso="";
+
+        private void tmBascula_Tick(object sender, EventArgs e)
+        {
+            if (Producto.producto.unidadbascula != cUnidad.Text)
+                return;
+
+            string p = Bascula.LeerPuerto();
+
+            if (p != ultimoPeso)
+            {
+                ultimoPeso = p;
+                cCantidad.Text = p;
+            }
         }
 
     }
 
-    public class ProductInfo
-    {
-        public string codigo { get; set; }
-
-        public string descripcion { get; set; }
-
-        public decimal precio { get; set; }
-
-        public decimal cantidad { get; set; }
-
-        public string unidad { get; set; }
-
-        public string unidadbascula { get; set; }
-
-        public IDictionary<string, decimal> unidades
-        {
-            get { return p_unidades; }
-        }
-
-        Dictionary<string, decimal> p_unidades=null;
-        public ProductInfo()
-        {
-            p_unidades=new Dictionary<string,decimal>();
-        }
-    }
-
-    public class ProducProc
-    {
-        private ProductInfo _prod = null;
-
-        public ProductInfo producto { get { return _prod; } set { _prod = value; unidad = _prod.unidad; precio = _prod.precio; cantidad = _prod.cantidad; } }
-
-        private string _unidad = "";
-
-        public string unidad 
-        { 
-            get {return _unidad;}
-            set
-            {
-                if (string.IsNullOrWhiteSpace(_unidad))
-                {
-                    _unidad = value;
-                    return;
-                }
-
-                cantidad = convertirUnidad(_unidad, cantidad, value);
-
-                precio = convertirPrecio(_unidad, precio, value);
-
-                _unidad = value;
-                
-
-                
-            }
-        }
-
-        //cant está expresada en unidad_ant y se calculará la cantidad que corresponde en la unidad_nueva
-        public decimal convertirUnidad(string unidad_ant, decimal cant, string unidad_nueva)
-        {
-            decimal f1 = 1, f2=1;
-            decimal r = cant;
-
-            if (unidad_ant!=_prod.unidad)
-            {
-                if (!_prod.unidades.ContainsKey(unidad_ant))
-                    throw new Exception("Unidad actual indicada no es válida");
-
-                f1 = _prod.unidades[unidad_ant];
-            }
-
-            if (unidad_nueva != _prod.unidad)
-            {
-                if (!_prod.unidades.ContainsKey(unidad_nueva))
-                    throw new Exception("Unidad nueva no es válida");
-
-                f2 = _prod.unidades[unidad_nueva];
-            }
-
-            try
-            {
-                r = Math.Round(cant / (f2 / f1), 3);
-            }
-            catch (Exception) { r = 0; }
-
-            return r;
-        }
-
-        public decimal convertirPrecio(string unidad_ant, decimal precio, string unidad_nueva)
-        {
-            decimal f1 = 1, f2 = 1;
-            decimal r = precio;
-
-            if (unidad_ant != _prod.unidad)
-            {
-                if (!_prod.unidades.ContainsKey(unidad_ant))
-                    throw new Exception("Unidad actual indicada no es válida");
-
-                f1 = _prod.unidades[unidad_ant];
-            }
-
-            if (unidad_nueva != _prod.unidad)
-            {
-                if (!_prod.unidades.ContainsKey(unidad_nueva))
-                    throw new Exception("Unidad nueva no es válida");
-
-                f2 = _prod.unidades[unidad_nueva];
-            }
-
-            try
-            {
-                r = Math.Round(precio * (f2 / f1), 3);
-            }
-            catch (Exception) { r = 0; }
-
-            return r;
-        }
-
-
-
-        public decimal cantidad
-        {
-            get;
-            set;
-        }
-
-        public decimal precio { get; set; }
-        public decimal total 
-        {
-            get 
-            {
-                return cantidad * precio;
-            }
-            set
-            {
-                try { precio = Math.Round(value / cantidad, 4); }
-                catch (Exception) { }
-            }
-        }
-    }
+   
 }

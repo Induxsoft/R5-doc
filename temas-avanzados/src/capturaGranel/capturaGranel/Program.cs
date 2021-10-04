@@ -8,29 +8,38 @@ namespace capturaGranel
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+
+
+        //Línea de comando: "codigo_producto" "descripcion_producto" "cantidad" "precio" "unidad" "unidad2:factor2,unidad3:factor3..." "unidad_usa_bascula"
+        
         [STAThread]
-        static void Main()
+        static void Main(string [] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             ProductInfo p = new ProductInfo();
 
-            p.codigo = "MA001";
-            p.descripcion = "Piña";
-            p.precio = 45.50m;
+            if (args.Length<5)
+            {
+                MessageBox.Show("Faltan parámetros de la línea comando.\r\n\r\ncapturaGranel.exe \"codigo_producto\" \"descripcion_producto\" \"cantidad\" \"precio\" \"unidad\" \"unidad2:factor2,unidad3:factor3...\" \"unidad_usa_bascula\"","Captura a granel");
+                return;
+            }
 
-            p.unidad = "Kg";
-            p.unidadbascula = p.unidad;
+            p.codigo = args[0];
+            p.descripcion = args[1];
+            p.cantidad = Convert.ToDecimal(args[2]);
+            p.precio = Convert.ToDecimal(args[3]);
 
-            p.unidades["Reja"] = 25;
-            p.unidades["Costal"] = 35;
-            p.unidades["Tonelada"] = 1000;
-            
-            
+            p.unidad = args[4];
+
+            if (args.Length>5)
+                foreach(string u in args[5].Trim().Split(','))
+                    if (u.Contains(':'))
+                        p.unidades[u.Split(':')[0].Trim()] = Convert.ToDecimal(u.Split(':')[1].Trim());
+
+            if (args.Length > 6)
+                p.unidadbascula = args[6].Trim();
 
             Application.Run(new formCaptura(p));
         }
