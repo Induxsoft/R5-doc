@@ -36,14 +36,14 @@ ESC cierra la ventana.
 ### Salida de consola
 
 Si la operación se cancela, se imprime en la consola: ```**CANCEL***```
-Si la operación se confirma, la salida es: ```***codigo|precio|cantidad```
+Si la operación se confirma, la salida es: ```***codigo|total|cantidad```
 
 - codigo Es el código del producto
-- precio es el precio unitario de la unidad estándar (no importa si se eligió otra unidad, el precio será convertido a lo correspondiente)
-- cantidad es la cantidad expresada también en la unidad estándar
+- total es el importe total a cobrar por la cantidad de unidades (estándar) vendidas 
+- cantidad es la cantidad expresada en la unidad estándar (no importa si se eligió otra unidad, la cantidad será convertida a lo correspondiente)
 
 Suponga que la unidad estándar es Kg y tiene una unidad alterna Caja con un factor de 25, es decir 25Kg=1Caja con un precio por caja de $100. 
 
-Si confirma la venta de 2 Caja, la cantidad devuelta será 50 y el precio $ 4
+Si confirma la venta de 2 Caja, la cantidad devuelta será 50 y el total $ 200
 
 
