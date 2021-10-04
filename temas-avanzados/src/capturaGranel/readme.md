@@ -13,9 +13,10 @@ Donde los argumentos por orden son:
  1. Código del producto
  2. Descripción del producto
  3. Cantidad
- 4. Unidad estándar
- 5. Unidades alternas y sus factores de conversión respecto a la unidad estándar (opcional)
- 6. Unidad que al estar seleccionada activa la entrada automática de la báscula (opcional)
+ 4. Precio en unidad estándar
+ 5. Unidad estándar
+ 6. Unidades alternas y sus factores de conversión respecto a la unidad estándar (opcional)
+ 7. Unidad que al estar seleccionada activa la entrada automática de la báscula (opcional)
  
 #### Nota sobre la especificación de unidades alternas
  
