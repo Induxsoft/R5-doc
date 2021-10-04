@@ -58,7 +58,7 @@ Para capturar la salida de consola de aplicaciones .Net de Windows Forms se requ
 
 
 ``` bacth
-@capturagranel.exe %1 %2 %3 %4 %5 %6
+@capturagranel.exe %1 %2 %3 %4 %5 %6 %7
 ```
 
 #### pos_usercmds.js
