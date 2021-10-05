@@ -198,15 +198,15 @@ namespace capturaGranel
 
             string[] args = File.ReadAllLines(fconfig);
 
-            string mensaje = LeerArg(args, 0);
-            string puerto = LeerArg(args, 1);
-            string velocidad = LeerArg(args, 2);
-            string bits_datos = LeerArg(args, 3);
-            string paridad = LeerArg(args, 4);
-            string handshake = LeerArg(args, 5);
-            string timeout = LeerArg(args, 6);
-            string max_long = LeerArg(args, 7);
-            string opciones = LeerArg(args, 8);
+             mensaje = LeerArg(args, 0);
+             puerto = LeerArg(args, 1);
+             velocidad = LeerArg(args, 2);
+             bits_datos = LeerArg(args, 3);
+             paridad = LeerArg(args, 4);
+             handshake = LeerArg(args, 5);
+             timeout = LeerArg(args, 6);
+             max_long = LeerArg(args, 7);
+             opciones = LeerArg(args, 8);
 
         }
 
@@ -217,7 +217,7 @@ namespace capturaGranel
             try
             {
                 
-                Puerto_serie.PortName = puerto;
+                Puerto_serie.PortName = Bascula.puerto;
 
                 if (string.IsNullOrEmpty(velocidad))
                 {
@@ -287,10 +287,18 @@ namespace capturaGranel
 
 
                 Puerto_serie.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                System.Windows.Forms.Application.DoEvents();
                 byte[] miBuffer1 = Encoding.ASCII.GetBytes(mensaje);
+                input = "";
+
                 Puerto_serie.Write(miBuffer1, 0, miBuffer1.Length);
+                completed = false;
+
                 do { }
                 while (!completed);
+
+                input = filterDigits(input);
+
                 Puerto_serie.Close();
             }
             catch
@@ -302,16 +310,33 @@ namespace capturaGranel
             return input;
         }
 
+
+        private static string filterDigits(string data)
+        {
+            string ndata = "";
+            foreach (char c in data)
+                if ("0123456789.".IndexOf(c) >= 0)
+                    ndata += c;
+
+
+            return ndata;
+        }
+
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
 
-            input = "";
-
-            foreach (char c in ((SerialPort)sender).ReadExisting().Trim())
-                if ("0123456789.".IndexOf(c) >= 0)
-                    input += c;
+            concatInBuffer(sender);
 
             completed = true;
+
         }
+
+        private static void concatInBuffer(object sender)
+        {
+            foreach (char c in ((SerialPort)sender).ReadExisting().Trim())
+                    input += c;
+
+        }
+
     }
 }

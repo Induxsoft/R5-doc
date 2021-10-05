@@ -35,11 +35,6 @@
             this.lblUnidad = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.sel5 = new System.Windows.Forms.Label();
-            this.sel4 = new System.Windows.Forms.Label();
-            this.sel3 = new System.Windows.Forms.Label();
-            this.sel2 = new System.Windows.Forms.Label();
-            this.sel1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.cTotal = new System.Windows.Forms.TextBox();
@@ -50,9 +45,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cUnidad = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.sel5 = new System.Windows.Forms.Label();
+            this.sel4 = new System.Windows.Forms.Label();
+            this.sel3 = new System.Windows.Forms.Label();
+            this.sel2 = new System.Windows.Forms.Label();
+            this.sel1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tmBascula = new System.Windows.Forms.Timer(this.components);
+            this.lblBascula = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,51 +125,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(603, 242);
             this.panel1.TabIndex = 4;
-            // 
-            // sel5
-            // 
-            this.sel5.BackColor = System.Drawing.Color.Lime;
-            this.sel5.Location = new System.Drawing.Point(53, 197);
-            this.sel5.Name = "sel5";
-            this.sel5.Size = new System.Drawing.Size(527, 10);
-            this.sel5.TabIndex = 12;
-            this.sel5.Visible = false;
-            // 
-            // sel4
-            // 
-            this.sel4.BackColor = System.Drawing.Color.Lime;
-            this.sel4.Location = new System.Drawing.Point(53, 133);
-            this.sel4.Name = "sel4";
-            this.sel4.Size = new System.Drawing.Size(527, 10);
-            this.sel4.TabIndex = 11;
-            this.sel4.Visible = false;
-            // 
-            // sel3
-            // 
-            this.sel3.BackColor = System.Drawing.Color.Lime;
-            this.sel3.Location = new System.Drawing.Point(53, 97);
-            this.sel3.Name = "sel3";
-            this.sel3.Size = new System.Drawing.Size(527, 10);
-            this.sel3.TabIndex = 10;
-            this.sel3.Visible = false;
-            // 
-            // sel2
-            // 
-            this.sel2.BackColor = System.Drawing.Color.Lime;
-            this.sel2.Location = new System.Drawing.Point(54, 63);
-            this.sel2.Name = "sel2";
-            this.sel2.Size = new System.Drawing.Size(527, 10);
-            this.sel2.TabIndex = 9;
-            this.sel2.Visible = false;
-            // 
-            // sel1
-            // 
-            this.sel1.BackColor = System.Drawing.Color.Lime;
-            this.sel1.Location = new System.Drawing.Point(54, 26);
-            this.sel1.Name = "sel1";
-            this.sel1.Size = new System.Drawing.Size(527, 10);
-            this.sel1.TabIndex = 8;
-            this.sel1.Visible = false;
             // 
             // label1
             // 
@@ -287,6 +243,51 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Unidad:";
             // 
+            // sel5
+            // 
+            this.sel5.BackColor = System.Drawing.Color.Lime;
+            this.sel5.Location = new System.Drawing.Point(53, 197);
+            this.sel5.Name = "sel5";
+            this.sel5.Size = new System.Drawing.Size(527, 10);
+            this.sel5.TabIndex = 12;
+            this.sel5.Visible = false;
+            // 
+            // sel4
+            // 
+            this.sel4.BackColor = System.Drawing.Color.Lime;
+            this.sel4.Location = new System.Drawing.Point(53, 133);
+            this.sel4.Name = "sel4";
+            this.sel4.Size = new System.Drawing.Size(527, 10);
+            this.sel4.TabIndex = 11;
+            this.sel4.Visible = false;
+            // 
+            // sel3
+            // 
+            this.sel3.BackColor = System.Drawing.Color.Lime;
+            this.sel3.Location = new System.Drawing.Point(53, 97);
+            this.sel3.Name = "sel3";
+            this.sel3.Size = new System.Drawing.Size(527, 10);
+            this.sel3.TabIndex = 10;
+            this.sel3.Visible = false;
+            // 
+            // sel2
+            // 
+            this.sel2.BackColor = System.Drawing.Color.Lime;
+            this.sel2.Location = new System.Drawing.Point(54, 63);
+            this.sel2.Name = "sel2";
+            this.sel2.Size = new System.Drawing.Size(527, 10);
+            this.sel2.TabIndex = 9;
+            this.sel2.Visible = false;
+            // 
+            // sel1
+            // 
+            this.sel1.BackColor = System.Drawing.Color.Lime;
+            this.sel1.Location = new System.Drawing.Point(54, 26);
+            this.sel1.Name = "sel1";
+            this.sel1.Size = new System.Drawing.Size(527, 10);
+            this.sel1.TabIndex = 8;
+            this.sel1.Visible = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(807, 538);
@@ -312,6 +313,15 @@
             this.tmBascula.Interval = 800;
             this.tmBascula.Tick += new System.EventHandler(this.tmBascula_Tick);
             // 
+            // lblBascula
+            // 
+            this.lblBascula.AutoSize = true;
+            this.lblBascula.ForeColor = System.Drawing.Color.White;
+            this.lblBascula.Location = new System.Drawing.Point(14, 546);
+            this.lblBascula.Name = "lblBascula";
+            this.lblBascula.Size = new System.Drawing.Size(0, 13);
+            this.lblBascula.TabIndex = 9;
+            // 
             // formCaptura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,6 +329,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(954, 579);
             this.ControlBox = false;
+            this.Controls.Add(this.lblBascula);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.panel1);
@@ -367,6 +378,7 @@
         private System.Windows.Forms.Label sel2;
         private System.Windows.Forms.Label sel1;
         private System.Windows.Forms.Timer tmBascula;
+        private System.Windows.Forms.Label lblBascula;
     }
 }
 

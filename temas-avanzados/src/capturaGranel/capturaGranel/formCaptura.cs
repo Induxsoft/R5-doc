@@ -333,10 +333,13 @@ namespace capturaGranel
 
             string p = Bascula.LeerPuerto();
 
-            if (p != ultimoPeso)
+            lblBascula.Text = p;
+
+            if (p != ultimoPeso )
             {
                 ultimoPeso = p;
                 cCantidad.Text = p;
+                cCantidad.SelectAll();
             }
         }
 
